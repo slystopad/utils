@@ -1,4 +1,8 @@
-# utils
+# Some helper scripts
+
+# Tools usefull with Mirantis MCP
+# ./mcp
+```
 usage: ip_inventory.py [-h] [--cidr CIDR] [--networks]
 
 List IP address inventory based on Salt grains
@@ -13,3 +17,4 @@ optional arguments:
   EXAMPLES:
     > salt '*' grains.get ipv4 --out yaml | ip_inventory.py
     > salt '*' grains.get ipv4 --out yaml | ip_inventory.py --cind 192.168.0.0/24
+```
