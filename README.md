@@ -1,7 +1,6 @@
 # Some helper scripts
 
-# Tools usefull with Mirantis MCP
-# ./mcp
+###### ./mcp - tools usefull with Mirantis MCP
 ```
 usage: ip_inventory.py [-h] [--cidr CIDR] [--networks]
 
