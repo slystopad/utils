@@ -52,17 +52,31 @@ except Exception as e:
 
 c = db.cursor()
 c.execute(
-  """select instance_uuid,connection_info
+  """select instance_uuid,volume_id,connection_info
   from block_device_mapping where deleted = 0 and instance_uuid=%s""",
   (args.vm_uuid,))
 current_data = c.fetchall()
 
 for res_item in current_data:
-    connection_info = json.loads(res_item[-1])
-    current_specs = connection_info['data']['qos_specs']
+    volume_id = res_item[1]
+    # value in DB is NULL
+    if res_item[-1]:
+        connection_info = json.loads(res_item[-1])
+    else:
+        print('INFO: [ {} {} ] connection_info is empty\n'.format(
+                args.vm_uuid, volume_id))
+        continue
+    # sometimes DB field can still have string like 'null'
+    try:
+        current_specs = connection_info['data']['qos_specs']
+    except:
+        print('INFO: [ {} {} ] failed to get qos_specs\n'.format(
+                args.vm_uuid, volume_id))
+        continue
     print(
-      'INFO: Current QoS state: {} {}\n'.format(
-        connection_info['serial'],
+      'INFO: [ {} {} ] Current QoS state: {}\n'.format(
+        args.vm_uuid,
+        volume_id,
         json.dumps(current_specs)))
 
     if args.clear_qos and current_specs:
