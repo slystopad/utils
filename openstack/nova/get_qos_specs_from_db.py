@@ -70,8 +70,8 @@ for res_item in current_data:
     try:
         current_specs = connection_info['data']['qos_specs']
     except:
-        print('INFO: [ {} {} ] failed to get qos_specs\n'.format(
-                args.vm_uuid, volume_id))
+        print('INFO: [ {} {} ] failed to get qos_specs.'
+              ' Check VM state\n'.format(args.vm_uuid, volume_id))
         continue
     print(
       'INFO: [ {} {} ] Current QoS state: {}\n'.format(
