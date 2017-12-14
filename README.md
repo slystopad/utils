@@ -1,6 +1,6 @@
 # Some helper scripts
 
-###### ./mcp - tools usefull with Mirantis MCP
+##### ./mcp - tools usefull with Mirantis MCP
 ```
 usage: ip_inventory.py [-h] [--cidr CIDR] [--networks]
 
@@ -17,7 +17,7 @@ optional arguments:
     > salt '*' grains.get ipv4 --out yaml | ip_inventory.py
     > salt '*' grains.get ipv4 --out yaml | ip_inventory.py --cind 192.168.0.0/24
 ```
-###### ./openstack - OpenStack related utils
+##### ./openstack - OpenStack related utils
 ```
 usage: get_qos_specs_from_db.py [-h] --vm-uuid VM_UUID [--host HOST]
                                 [--port PORT] [--db DB] [--user USER]
@@ -45,6 +45,7 @@ optional arguments:
 
 ```
 **EXAMPLES:**
+
 Look at current limits:
 ```
 root@host:~# ./get_qos_specs_from_db.py --pass P@ssw0rd --vm 6a480ebd-05e7-4364-837c-69d95a9b9e90
@@ -52,6 +53,7 @@ INFO: Working on DB `nova` table `block_device_mapping`
 INFO: Current QoS state: 06e2b8b9-32da-47c4-9344-530a6262419b {"write_iops_sec": "555", "read_iops_sec": "333"}
 
 ```
+
 Look what `--clear` would do:
 ```
 root@host:~# ./get_qos_specs_from_db.py --pass P@ssw0rd --vm 6a480ebd-05e7-4364-837c-69d95a9b9e90 --clear --dry
@@ -63,6 +65,7 @@ INFO: New value of block_device_mapping.connection_info:
 {"driver_volume_type": "nfs", "mount_point_base": "/var/lib/cinder/mnt", "serial": "06e2b8b9-32da-47c4-9344-530a6262419b", "data": {"device_path": "/var/lib/nova/mnt/9b279265fe46ef47b940e5519d84a673/volume-06e2b8b9-32da-47c4-9344-530a6262419b", "name": "volume-06e2b8b9-32da-47c4-9344-530a6262419b", "encrypted": false, "qos_specs": null, "export": "172.18.52.245:/vol_cin3", "access_mode": "rw", "options": null}, "connector": {"initiator": "iqn.1993-08.org.debian:01:dbcdd584e44", "ip": "192.168.0.11", "platform": "x86_64", "host": "node-11.domain.tld", "os_type": "linux2", "multipath": false}}
 
 ```
+
 Clear current limits and check result:
 ```
 root@host:~# ./get_qos_specs_from_db.py --pass P@ssw0rd --vm 6a480ebd-05e7-4364-837c-69d95a9b9e90 --clear
@@ -78,6 +81,7 @@ INFO: Working on DB `nova` table `block_device_mapping`
 INFO: Current QoS state: 06e2b8b9-32da-47c4-9344-530a6262419b null
 
 ```
+
 Set limits and check result:
 ```
 root@host:~# ./get_qos_specs_from_db.py --pass P@ssw0rd --vm 6a480ebd-05e7-4364-837c-69d95a9b9e90 --write 99 --read 88
