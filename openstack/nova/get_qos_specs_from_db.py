@@ -53,7 +53,7 @@ except Exception as e:
 c = db.cursor()
 c.execute(
   """select instance_uuid,connection_info
-  from block_device_mapping where instance_uuid=%s""",
+  from block_device_mapping where deleted = 0 and instance_uuid=%s""",
   (args.vm_uuid,))
 current_data = c.fetchall()
 
